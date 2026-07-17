@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MIT 6.0001 Final Exam Cheat Sheet</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 9px;
+      line-height: 1.2;
+      color: #222;
+      background: white;
+      padding: 0.4in;
+      max-width: 8.5in;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 14px;
+      font-weight: bold;
+      margin: 0 0 3px 0;
+      color: #1a4d8f;
+      border-bottom: 2px solid #1a4d8f;
+      padding-bottom: 2px;
+    }
+
+    h2 {
+      font-size: 10px;
+      font-weight: bold;
+      margin: 4px 0 2px 0;
+      color: #2a6eb4;
+      background: #e8f0f8;
+      padding: 2px 4px;
+      border-left: 3px solid #2a6eb4;
+    }
+
+    h3 {
+      font-size: 8.5px;
+      font-weight: bold;
+      margin: 2px 0 1px 0;
+      color: #333;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .section {
+      border: 1px solid #d0d0d0;
+      border-radius: 2px;
+      padding: 3px;
+      background: #fafafa;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8px;
+      margin: 2px 0;
+    }
+
+    table th {
+      background: #2a6eb4;
+      color: white;
+      padding: 2px;
+      text-align: left;
+      font-weight: bold;
+    }
+
+    table td {
+      padding: 2px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    table tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+
+    ul, ol {
+      margin-left: 12px;
+      margin-top: 1px;
+      margin-bottom: 1px;
+    }
+
+    li {
+      margin-bottom: 1px;
+    }
+
+    .memory-aid {
+      background: #fff8dc;
+      padding: 2px 3px;
+      border-left: 2px solid #ff9800;
+      margin: 2px 0;
+      font-weight: 500;
+    }
+
+    .code {
+      background: #f5f5f5;
+      padding: 1px 2px;
+      font-family: 'Courier New', monospace;
+      font-size: 7.5px;
+      border-left: 2px solid #2a6eb4;
+      margin: 1px 0;
+      overflow-x: auto;
+    }
+
+    .highlight {
+      background: #ffeb3b;
+      padding: 1px 2px;
+      font-weight: bold;
+    }
+
+    .box {
+      border: 1px solid #999;
+      padding: 2px;
+      margin: 2px 0;
+      background: #f0f0f0;
+      font-size: 8px;
+    }
+
+    .row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 3px;
+    }
+
+    .col-1-2 {
+      flex: 1;
+    }
+
+    @media print {
+      body {
+        max-width: 100%;
+        padding: 0.3in;
+        margin: 0;
+      }
+      page-break-after: always;
+      page-break-inside: avoid;
+    }
+  </style>
+</head>
+<body>
+  <h1>📘 MIT 6.0001/6.0002 Final Exam Cheat Sheet</h1>
+
+  <!-- BIG PICTURE -->
+  <div class="memory-aid">
+    🎯 <strong>Core Mantra</strong>: Decompose problems → Abstract → Test → Optimize
+  </div>
+
+  <!-- PART 1: FUNDAMENTALS -->
+  <div class="container">
+    <div class="column">
+      <div class="section">
+        <h2>Python Basics</h2>
+        <h3>Variables & Types</h3>
+        <table>
+          <tr><th>Type</th><th>Example</th><th>Mutable?</th></tr>
+          <tr><td>int</td><td>42</td><td>No</td></tr>
+          <tr><td>float</td><td>3.14</td><td>No</td></tr>
+          <tr><td>str</td><td>"hi"</td><td>No</td></tr>
+          <tr><td>list</td><td>[1,2,3]</td><td><span class="highlight">Yes</span></td></tr>
+          <tr><td>dict</td><td>{'a':1}</td><td><span class="highlight">Yes</span></td></tr>
+          <tr><td>tuple</td><td>(1,2)</td><td>No</td></tr>
+        </table>
+
+        <h3>Operations</h3>
+        <div class="code">// &quot; // &quot; (floor division)<br/>% (modulo)<br/>** (exponent)<br/>== vs is (value vs identity)</div>
+      </div>
+
+      <div class="section">
+        <h2>Control Flow</h2>
+        <div class="code">if x > 5:<br/>    # do something<br/>elif x == 5:<br/>    # do this<br/>else:<br/>    # fallback</div>
+        <h3>Loops</h3>
+        <div class="code">for i in range(n): # 0 to n-1<br/>    pass<br/>while condition:<br/>    pass</div>
+        <div class="memory-aid">💡 Use <code>for</code> for known count, <code>while</code> for unknown</div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="section">
+        <h2>Functions & Scope</h2>
+        <div class="code">def func_name(param1, param2=default):<br/>    &quot;&quot;&quot;Docstring&quot;&quot;&quot;<br/>    return result</div>
+
+        <h3>Scope Rules (LEGB)</h3>
+        <ol>
+          <li><strong>Local</strong> - inside function</li>
+          <li><strong>Enclosing</strong> - nested functions</li>
+          <li><strong>Global</strong> - module level</li>
+          <li><strong>Built-in</strong> - Python's names</li>
+        </ol>
+        <div class="box">⚠️ <strong>Assignment creates local variable!</strong><br/>Use <code>global x</code> to modify global</div>
+
+        <h3>Default Parameters</h3>
+        <div class="code">def f(x, y=[]):<br/>    y.append(x)  # ⚠️ DEFAULT MUTATES!</div>
+        <div class="memory-aid">✅ Use <code>None</code> as default for mutable types</div>
+      </div>
+
+      <div class="section">
+        <h2>Data Structures</h2>
+        <table>
+          <tr><th>Method</th><th>What it does</th></tr>
+          <tr><td>list.append(x)</td><td>Add to end</td></tr>
+          <tr><td>list.extend(l)</td><td>Add all items</td></tr>
+          <tr><td>list.pop()</td><td>Remove last</td></tr>
+          <tr><td>dict[key]</td><td>Lookup value</td></tr>
+          <tr><td>dict.get(k, default)</td><td>Safe lookup</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 2: INTERMEDIATE -->
+  <div class="container">
+    <div class="column">
+      <div class="section">
+        <h2>Object-Oriented Programming</h2>
+        <div class="code">class Dog:<br/>    def __init__(self, name):<br/>        self.name = name<br/>    def bark(self):<br/>        return f"{self.name} says woof!"</div>
+
+        <h3>Key Concepts</h3>
+        <ul>
+          <li><strong>Encapsulation</strong>: Bundle data + methods</li>
+          <li><strong>Inheritance</strong>: <code>class Puppy(Dog):</code></li>
+          <li><strong>Polymorphism</strong>: Override parent methods</li>
+        </ul>
+
+        <div class="code">class Puppy(Dog):<br/>    def bark(self):<br/>        return f"{self.name} squeaks!"</div>
+      </div>
+
+      <div class="section">
+        <h2>Testing & Debugging</h2>
+        <h3>Test Design</h3>
+        <ul>
+          <li><strong>Normal cases</strong>: Expected inputs</li>
+          <li><strong>Boundary</strong>: Empty, single, max values</li>
+          <li><strong>Error cases</strong>: Invalid inputs</li>
+        </ul>
+        <h3>Debugging</h3>
+        <ul>
+          <li>Print statements → trace execution</li>
+          <li>Binary search → narrow down bug location</li>
+          <li>Read code carefully → logic errors</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="section">
+        <h2>Aliasing & Mutability</h2>
+        <div class="code">list1 = [1, 2, 3]<br/>list2 = list1  # SAME OBJECT!<br/>list1.append(4)<br/>print(list2)  # [1,2,3,4]!</div>
+
+        <h3>Avoiding Aliasing</h3>
+        <div class="code">list3 = list1.copy()  # or list1[:]<br/>list3 = list(list1)  # new list</div>
+
+        <div class="memory-aid">⚠️ <strong>Side Effects</strong> make code unpredictable. Return values instead!</div>
+      </div>
+
+      <div class="section">
+        <h2>Efficiency Analysis</h2>
+        <table>
+          <tr><th>Notation</th><th>Example</th><th>Speed</th></tr>
+          <tr><td>O(1)</td><td>dict lookup</td><td>⚡ Constant</td></tr>
+          <tr><td>O(log n)</td><td>binary search</td><td>🔥 Log</td></tr>
+          <tr><td>O(n)</td><td>loop through list</td><td>Good</td></tr>
+          <tr><td>O(n²)</td><td>nested loops</td><td>⚠️ Slow</td></tr>
+          <tr><td>O(2ⁿ)</td><td>recursive bad</td><td>🔴 SLOW</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 3: ADVANCED -->
+  <div class="container">
+    <div class="column">
+      <div class="section">
+        <h2>Sorting & Searching</h2>
+        <table>
+          <tr><th>Algorithm</th><th>Time</th><th>Notes</th></tr>
+          <tr><td>Bubble Sort</td><td>O(n²)</td><td>Simple, slow</td></tr>
+          <tr><td>Merge Sort</td><td>O(n log n)</td><td>Stable, fast</td></tr>
+          <tr><td>Quick Sort</td><td>O(n log n)</td><td>Avg fast</td></tr>
+          <tr><td>Binary Search</td><td>O(log n)</td><td>Need sorted</td></tr>
+        </table>
+
+        <h3>Built-in Python</h3>
+        <div class="code">sorted(list)  # new sorted list<br/>list.sort()  # in-place<br/>list.reverse()  # flip order</div>
+      </div>
+
+      <div class="section">
+        <h2>Dynamic Programming</h2>
+        <h3>Key Idea: Memoization</h3>
+        <div class="code">memo = {}<br/>def fib(n):<br/>    if n in memo:<br/>        return memo[n]<br/>    # compute...<br/>    memo[n] = result<br/>    return result</div>
+
+        <div class="memory-aid">💡 Cache results → avoid recalculating subproblems</div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="section">
+        <h2>Problem-Solving Recipe</h2>
+        <ol>
+          <li><strong>Understand</strong> the problem
+            <ul><li>Inputs? Outputs? Constraints?</li></ul>
+          </li>
+          <li><strong>Design</strong> solution
+            <ul><li>Decompose into parts</li></ul>
+          </li>
+          <li><strong>Implement</strong> cleanly
+            <ul><li>Meaningful names, docstrings</li></ul>
+          </li>
+          <li><strong>Test</strong> thoroughly
+            <ul><li>Normal, boundary, error cases</li></ul>
+          </li>
+          <li><strong>Optimize</strong> if needed
+            <ul><li>Measure, find bottleneck, improve</li></ul>
+          </li>
+        </ol>
+      </div>
+
+      <div class="section">
+        <h2>🚨 Common Mistakes</h2>
+        <ul>
+          <li>Assigning mutable defaults in functions</li>
+          <li>Aliasing when you meant copy</li>
+          <li>Off-by-one errors in loops</li>
+          <li>Forgetting base case in recursion</li>
+          <li>Side effects instead of returns</li>
+          <li>Modifying global without declaring</li>
+          <li>Not testing edge cases (empty, single item)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK REFERENCE & FLASHCARDS -->
+  <h2>⚡ One-Minute Review</h2>
+  <div class="row">
+    <div class="col-1-2">
+      <strong>Fundamentals:</strong> Variables → Functions → Control Flow → Data Structures
+    </div>
+    <div class="col-1-2">
+      <strong>Advanced:</strong> OOP → Efficiency → Searching/Sorting → Dynamic Programming
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-1-2">
+      <strong>Scope:</strong> Local → Enclosing → Global → Built-in
+    </div>
+    <div class="col-1-2">
+      <strong>Testing:</strong> Design (normal/boundary/error) → Debug → Verify
+    </div>
+  </div>
+
+  <!-- LIKELY EXAM QUESTIONS -->
+  <h2>📋 Practice Questions (No Answers)</h2>
+  <ol style="font-size: 8px; margin-left: 10px;">
+    <li>What's the difference between <code>list.copy()</code> and assignment? Why does it matter?</li>
+    <li>Write a function that sums nested lists. How would you test it? What are edge cases?</li>
+    <li>Explain scope with a concrete example. When would you use <code>global</code>?</li>
+    <li>Design a class hierarchy for animals (Dog, Cat, Bird). Show inheritance and polymorphism.</li>
+    <li>Compare bubble sort vs merge sort: time complexity, space, when to use each.</li>
+    <li>Write a recursive function with memoization (Fibonacci). Why is memoization needed?</li>
+    <li>What does O(n²) mean? Give 3 examples of algorithms with that complexity.</li>
+    <li>Describe a bug you'd find: function with mutable default parameter. Fix it.</li>
+    <li>Design tests for a function that finds max in a list. Include all edge cases.</li>
+    <li>Explain the difference between <code>==</code> and <code>is</code> with examples.</li>
+  </ol>
+
+</body>
+</html>
